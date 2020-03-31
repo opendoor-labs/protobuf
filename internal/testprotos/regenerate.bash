@@ -9,8 +9,8 @@
 # are checked in to ensure that they continue to function.
 #
 # Versions used:
-#	protoc:        v3.9.1
-#	protoc-gen-go: v1.3.2
+#	protoc:        v3.11.2
+#	protoc-gen-go: v1.3.5
 
 for X in $(find . -name "*.proto" | sed "s|^\./||"); do
 	protoc -I$(pwd) --go_out=paths=source_relative:. $X

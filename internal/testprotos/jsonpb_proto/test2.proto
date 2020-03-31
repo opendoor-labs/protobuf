@@ -8,6 +8,7 @@ option go_package = "github.com/golang/protobuf/internal/testprotos/jsonpb_proto
 
 import "google/protobuf/any.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/field_mask.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
@@ -151,4 +152,10 @@ message MsgWithRequiredWKT {
 
 extend Real {
   optional MsgWithRequired extm = 125;
+}
+
+message FieldMaskedMessage {
+  optional google.protobuf.FieldMask mask = 1;
+  optional string string_field = 2;
+  optional int64 int_field = 3;
 }

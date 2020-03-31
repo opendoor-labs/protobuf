@@ -23,7 +23,7 @@ import (
 	"google.golang.org/protobuf/reflect/protoregistry"
 )
 
-const wrapJSONMarshalV2 = false
+const wrapJSONMarshalV2 = true
 
 // Marshaler is a configurable object for marshaling protocol buffer messages
 // to the specified JSON representation.

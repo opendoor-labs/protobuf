@@ -7,7 +7,7 @@ import (
 	fmt "fmt"
 	proto2_proto "github.com/golang/protobuf/internal/testprotos/proto2_proto"
 	proto "github.com/golang/protobuf/proto"
-	anypb "google.golang.org/protobuf/types/known/anypb"
+	any "github.com/golang/protobuf/ptypes/any"
 	math "math"
 )
 
@@ -68,8 +68,8 @@ type Message struct {
 	Terrain              map[string]*Nested                   `protobuf:"bytes,10,rep,name=terrain,proto3" json:"terrain,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	Proto2Field          *proto2_proto.SubDefaults            `protobuf:"bytes,11,opt,name=proto2_field,json=proto2Field,proto3" json:"proto2_field,omitempty"`
 	Proto2Value          map[string]*proto2_proto.SubDefaults `protobuf:"bytes,13,rep,name=proto2_value,json=proto2Value,proto3" json:"proto2_value,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	Anything             *anypb.Any                           `protobuf:"bytes,14,opt,name=anything,proto3" json:"anything,omitempty"`
-	ManyThings           []*anypb.Any                         `protobuf:"bytes,15,rep,name=many_things,json=manyThings,proto3" json:"many_things,omitempty"`
+	Anything             *any.Any                             `protobuf:"bytes,14,opt,name=anything,proto3" json:"anything,omitempty"`
+	ManyThings           []*any.Any                           `protobuf:"bytes,15,rep,name=many_things,json=manyThings,proto3" json:"many_things,omitempty"`
 	Submessage           *Message                             `protobuf:"bytes,17,opt,name=submessage,proto3" json:"submessage,omitempty"`
 	Children             []*Message                           `protobuf:"bytes,18,rep,name=children,proto3" json:"children,omitempty"`
 	StringMap            map[string]string                    `protobuf:"bytes,20,rep,name=string_map,json=stringMap,proto3" json:"string_map,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
@@ -201,14 +201,14 @@ func (m *Message) GetProto2Value() map[string]*proto2_proto.SubDefaults {
 	return nil
 }
 
-func (m *Message) GetAnything() *anypb.Any {
+func (m *Message) GetAnything() *any.Any {
 	if m != nil {
 		return m.Anything
 	}
 	return nil
 }
 
-func (m *Message) GetManyThings() []*anypb.Any {
+func (m *Message) GetManyThings() []*any.Any {
 	if m != nil {
 		return m.ManyThings
 	}
@@ -514,7 +514,9 @@ func init() {
 	proto.RegisterMapType((map[int64]string)(nil), "proto3_test.TestUTF8.MapValueEntry")
 }
 
-func init() { proto.RegisterFile("proto3_proto/test.proto", fileDescriptor_ff83f0b8d2b92afa) }
+func init() {
+	proto.RegisterFile("proto3_proto/test.proto", fileDescriptor_ff83f0b8d2b92afa)
+}
 
 var fileDescriptor_ff83f0b8d2b92afa = []byte{
 	// 926 bytes of a gzipped FileDescriptorProto

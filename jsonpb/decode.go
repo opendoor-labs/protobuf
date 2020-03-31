@@ -22,7 +22,7 @@ import (
 	"google.golang.org/protobuf/reflect/protoregistry"
 )
 
-const wrapJSONUnmarshalV2 = false
+const wrapJSONUnmarshalV2 = true
 
 // UnmarshalNext unmarshals the next object in a JSON object stream into m.
 func UnmarshalNext(d *json.Decoder, m proto.Message) error {
